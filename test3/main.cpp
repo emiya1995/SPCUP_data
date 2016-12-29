@@ -389,7 +389,7 @@ int main() {
     }
     //int n = output2.size();
     //std::cout<<output2.size()<<std::endl;
-    /*float preprocessed_signal[6][44100*3/5]={0};
+    float preprocessed_signal[6][44100*3/5]={0};
     preprocessing(output2,preprocessed_signal);
     
     FILE *fp4 = fopen("preprocessedSignal.txt", "w+");
@@ -400,14 +400,14 @@ int main() {
         }  
         fprintf(fp4,"\n");
     }
-    fclose(fp4);*/
+    fclose(fp4);
     /*
     for(int i=0;i<44100*3*0.2;++i)
     {
         std::cout<<"output2"<<output2[i]<<"output1"<<output[i]<<"\n";
     }*/
     
-    fft(output2);
+    //fft(output2);
     /*
     for(int i=0;i<output2.size();++i)
     {
@@ -419,7 +419,7 @@ int main() {
     //Complex output2[(44100 * 3) / 5];
     //fft(output, output2, sizeof(output)/sizeof(output[0]));
     //dft(output, output2, (44100 * 3) / 5);
-    FILE *fp3 = fopen("fftTEST.txt", "w+");
+/*    FILE *fp3 = fopen("fftTEST.txt", "w+");
     for (int i = 0; i < (44100 * 3) / 5; i++) {
         if(output2[i].imag() >= 0)
            fprintf(fp3, "%f+%fi ", output2[i].real(),output2[i].imag());
@@ -427,7 +427,7 @@ int main() {
             fprintf(fp3, "%f%fi ", output2[i].real(),output2[i].imag());
         //      if((i+1)%10==0) fprintf(fp2, "\n");
     }
-    fclose(fp3);
+    fclose(fp3);*/
     //std::cout<<"sizeof"<<sizeof(output2)/sizeof(output2[0])<<"\n";
     fclose(fp2);
     //E_YJY
