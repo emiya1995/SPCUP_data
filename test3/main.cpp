@@ -243,22 +243,27 @@ void preprocessing(CArray & out, float (*finaloutput)[26460])
     int n=dft.size();
     int bl[nbands];
     int br[nbands];
-    bl[0]=0;
-    br[0]=floor(n*100/bandlimits[6]);
-    for(int i=1;i<nbands;++i)
+    for(int i=0;i<nbands;++i)
     {
-        bl[i]=br[i-1];
-        br[i]=br[i-1]*2;
+        bl[i]=floor(bandlimits[i]*n*0.5/bandlimits[nbands])+1;
+        br[i]=floor(bandlimits[i+1]*n*0.5/bandlimits[nbands]);
     }
+    br[nbands-1] = floor(n*0.5);
+   /* 
+    for(int i=0;i<nbands;++i)
+    {
+        std::cout<<"bl : "<<bl[i]<<" , br : "<<br[i]<<std::endl;
+    }*/
     CArray output1[nbands];
     for(int i=0;i<nbands;++i)
     {
         output1[i].resize(n);
-        for(int j=bl[i];j<br[i];++j)
+        for(int j=bl[i]-1;j<br[i];++j)
         {
             output1[i][j]=dft[j];
-            output1[i][n-j]=dft[n-j];
+            output1[i][n-j-1]=dft[n-j-1];
         }
+       // std::cout<<"i = "<<i<<" , left : "<<bl[i]-1<<"~"<<br[i]-1<<" , right : "<<n-bl[i]<<"~"<<n-br[i]<<std::endl;
     }
     output1[0][0]=Complex();
     FILE *fp20 = fopen("filterbankTEST.txt", "w+");
